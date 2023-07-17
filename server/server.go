@@ -99,6 +99,10 @@ func (srv *Server) Serve(l net.Listener) error {
 	}
 }
 
+func (c *conn) Done() <-chan struct{} {
+	return c.done
+}
+
 func (c *conn) readPacket() (*Response, error) {
 	readTimeout := c.readTimeout
 	i, err := c.Conn.RecvAndUnpackPkt(readTimeout)
