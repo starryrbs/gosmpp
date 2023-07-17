@@ -10,7 +10,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/boxtsecond/gosmpp/pkg"
+	"github.com/starryrbs/gosmpp/pkg"
 )
 
 var (

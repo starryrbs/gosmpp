@@ -1,4 +1,4 @@
-module github.com/boxtsecond/gosmpp
+module github.com/starryrbs/gosmpp
 
 go 1.14
 

@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/boxtsecond/gosmpp/client"
-	"github.com/boxtsecond/gosmpp/pkg"
+	"github.com/starryrbs/gosmpp/client"
+	"github.com/starryrbs/gosmpp/pkg"
 )
 
 var (

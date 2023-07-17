@@ -6,8 +6,8 @@ import (
 	"net"
 	"time"
 
-	"github.com/boxtsecond/gosmpp/pkg"
-	"github.com/boxtsecond/gosmpp/server"
+	"github.com/starryrbs/gosmpp/pkg"
+	"github.com/starryrbs/gosmpp/server"
 )
 
 const (

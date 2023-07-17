@@ -5,7 +5,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/boxtsecond/gosmpp/pkg"
+	"github.com/starryrbs/gosmpp/pkg"
 )
 
 var ErrRespNotMatch = errors.New("the response is not matched with the request")
