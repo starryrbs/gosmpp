@@ -24,11 +24,11 @@ type Conn struct {
 
 	// for SequenceNum generator goroutine
 	SequenceNum <-chan uint32
-	done        chan<- struct{}
+	done        chan struct{}
 }
 
 // The sequence number may range from: 0x00000001 to 0x7FFFFFFF.
-func newSequenceNumGenerator() (<-chan uint32, chan<- struct{}) {
+func newSequenceNumGenerator() (<-chan uint32, chan struct{}) {
 	out := make(chan uint32)
 	done := make(chan struct{})
 
@@ -65,6 +65,10 @@ func NewConnection(conn net.Conn, v uint8) *Conn {
 	tc := c.Conn.(*net.TCPConn)
 	tc.SetKeepAlive(true) //Keepalive as default
 	return c
+}
+
+func (c *Conn) Done() <-chan struct{} {
+	return c.done
 }
 
 func (c *Conn) Close() {

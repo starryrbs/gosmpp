@@ -99,10 +99,6 @@ func (srv *Server) Serve(l net.Listener) error {
 	}
 }
 
-func (c *conn) Done() <-chan struct{} {
-	return c.done
-}
-
 func (c *conn) readPacket() (*Response, error) {
 	readTimeout := c.readTimeout
 	i, err := c.Conn.RecvAndUnpackPkt(readTimeout)
@@ -314,9 +310,9 @@ func (c *conn) serve() {
 		if err := recover(); err != nil {
 			c.server.ErrorLog.Printf("panic serving %v: %v\n", c.Conn.RemoteAddr(), err)
 		}
-	}()
 
-	defer c.close()
+		c.close()
+	}()
 
 	startActiveTest(c)
 
