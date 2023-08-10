@@ -25,6 +25,7 @@ type Conn struct {
 	// for SequenceNum generator goroutine
 	SequenceNum <-chan uint32
 	done        chan struct{}
+	locker      sync.Mutex
 }
 
 // The sequence number may range from: 0x00000001 to 0x7FFFFFFF.
@@ -73,6 +74,13 @@ func (c *Conn) Done() <-chan struct{} {
 
 func (c *Conn) Close() {
 	if c != nil {
+		if c.State == CONNECTION_CLOSED {
+			return
+		}
+
+		c.locker.Lock()
+		defer c.locker.Unlock()
+		// double check
 		if c.State == CONNECTION_CLOSED {
 			return
 		}
